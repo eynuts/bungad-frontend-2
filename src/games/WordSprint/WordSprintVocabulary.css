@@ -1,0 +1,250 @@
+/* src/games/WordSprint/WordSprintVocabulary.css */
+
+/* --- ROOT WRAPPER --- */
+.vocab-wrapper, .vocab-game-wrapper {
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+    color: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* --- START & RESULTS CARDS --- */
+.vocab-start-card, .results-card {
+    margin: auto;
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(16px);
+    padding: 3rem;
+    border-radius: 32px;
+    border: 1px solid rgba(16, 185, 129, 0.2); /* Emerald Border */
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    animation: vocabFadeIn 0.5s ease-out;
+}
+
+@keyframes vocabFadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* --- HEADER --- */
+.vocab-menu-header h1 {
+    font-size: 2.5rem;
+    color: #10b981; /* Emerald */
+    margin: 0;
+}
+
+.player-tag { color: #94a3b8; margin-top: 10px; }
+
+/* --- DIFFICULTY SELECTOR --- */
+.difficulty-container { margin: 2.5rem 0; }
+.difficulty-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 1.2rem;
+}
+
+.diff-btn {
+    padding: 12px 24px;
+    border-radius: 14px;
+    border: 1px solid #334155;
+    background: rgba(15, 23, 42, 0.4);
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 600;
+}
+
+.diff-btn.active {
+    background: #10b981;
+    color: #020617;
+    border-color: #10b981;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+/* --- MAIN BUTTONS --- */
+.play-btn {
+    width: 100%;
+    padding: 18px;
+    border-radius: 18px;
+    background: #10b981;
+    color: #020617;
+    font-weight: 800;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.play-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+.exit-btn-text {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+
+/* --- GAME HUD --- */
+.game-hud {
+    height: 85px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2.5rem;
+    background: rgba(2, 6, 23, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hud-left, .hud-right { width: 280px; display: flex; align-items: center; gap: 25px; }
+.hud-center { flex-grow: 1; display: flex; flex-direction: column; align-items: center; }
+
+.hud-back {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #f8fafc;
+    padding: 8px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.hud-stat label { font-size: 0.75rem; color: #64748b; letter-spacing: 0.05em; margin-bottom: 2px; }
+.hud-stat span { font-weight: 800; font-size: 1.5rem; color: #10b981; }
+
+.question-counter { font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; color: #94a3b8; }
+.question-counter span { color: #475569; }
+
+.streak-badge {
+    margin-left: auto;
+    padding: 10px 20px;
+    border-radius: 12px;
+    background: #1e293b;
+    font-weight: 800;
+    border: 1px solid transparent;
+}
+
+.streak-badge.active {
+    background: #f59e0b;
+    color: #451a03;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+
+/* --- PROGRESS BAR --- */
+.vocab-progress-container {
+    width: 250px;
+    height: 10px;
+    background: #1e293b;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.vocab-progress-fill {
+    height: 100%;
+    transition: width 1s linear, background-color 0.3s;
+}
+
+/* --- WORD CARD --- */
+.game-stage {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.question-card {
+    background: #1e293b;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 28px;
+    padding: 3rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.card-instruction { color: #64748b; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; text-align: center; }
+
+.question-content h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    text-align: center;
+    margin: 1rem 0 2rem;
+    color: #f1f5f9;
+}
+
+/* --- OPTIONS --- */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+}
+
+.option-btn {
+    padding: 1.5rem;
+    border-radius: 20px;
+    border: 2px solid #334155;
+    background: #0f172a;
+    color: #cbd5e1;
+    font-size: 1rem;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.option-btn:hover:not(:disabled) {
+    border-color: #10b981;
+    background: #1e293b;
+}
+
+.option-btn.correct { background: #064e3b !important; border-color: #10b981 !important; color: #ecfdf5; }
+.option-btn.wrong { background: #7f1d1d !important; border-color: #ef4444 !important; color: #fef2f2; }
+
+/* --- FOOTER --- */
+.power-up-bar {
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+    background: rgba(2, 6, 23, 0.9);
+}
+
+.power-btn {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #94a3b8;
+    padding: 12px 24px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.power-btn:hover:not(:disabled) {
+    background: #334155;
+    color: white;
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+    .options-grid { grid-template-columns: 1fr; }
+    .game-hud { height: auto; padding: 1rem; flex-wrap: wrap; }
+    .hud-left, .hud-right { width: 50%; }
+    .hud-center { width: 100%; order: 3; margin-top: 15px; }
+    .question-card { padding: 1.5rem; }
+    .power-up-bar { gap: 0.5rem; padding: 0 10px; }
+    .power-btn { padding: 10px; font-size: 0.8rem; }
+}

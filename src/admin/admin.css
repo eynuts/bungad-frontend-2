@@ -1,0 +1,313 @@
+/* src/admin/admin.css */
+
+/* --- 1. Variables & Global Reset --- */
+:root {
+  --primary-bg: #0b0e14;
+  --sidebar-bg: #151921;
+  --header-bg: rgba(21, 25, 33, 0.9);
+  --accent-color: #38bdf8;
+  --text-main: #f8fafc;
+  --text-dim: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --danger: #f43f5e;
+  --success: #10b981;
+  --sidebar-width: 260px;
+  --header-height: 70px;
+  /* Smooth Cubic Bezier for all movements */
+  --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Ensure no browser-level gaps */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+}
+
+/* --- 2. Layout Structure --- */
+.admin-portal-wrapper {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--primary-bg);
+  color: var(--text-main);
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- 3. Sidebar (Animated & Fixed) --- */
+.modern-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  /* Hardware accelerated slide animation */
+  transition: transform var(--transition);
+  transform: translateX(0);
+}
+
+/* Slide sidebar out */
+.sidebar-hidden .modern-sidebar {
+  transform: translateX(-100%);
+}
+
+.sidebar-header {
+  padding: 1.5rem;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.logo-icon { 
+  color: var(--accent-color); 
+  font-size: 1.5rem;
+}
+
+.sidebar-logo span span { 
+  color: var(--accent-color); 
+}
+
+.mobile-close-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Navigation Menu */
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.nav-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 1.5rem 0 1rem 0.5rem;
+  letter-spacing: 1px;
+}
+
+.nav-link {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--text-dim);
+  cursor: pointer;
+  text-align: left;
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-link span {
+  flex: 1;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  transform: translateX(5px);
+}
+
+.nav-link.active {
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--accent-color);
+  border: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+.active-indicator {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+  padding: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.exit-button {
+  width: 100%;
+  padding: 12px;
+  background: rgba(244, 63, 94, 0.1);
+  color: var(--danger);
+  border: 1px solid rgba(244, 63, 94, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.exit-button:hover {
+  background: var(--danger);
+  color: white;
+}
+
+/* --- 4. Main Content Area (Animated Width) --- */
+.admin-main-viewport {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  /* Syncs movement with the sidebar slide */
+  margin-left: var(--sidebar-width);
+  transition: margin-left var(--transition);
+  min-width: 0;
+}
+
+.sidebar-hidden .admin-main-viewport {
+  margin-left: 0;
+}
+
+/* Top Navbar */
+.admin-top-bar {
+  height: var(--header-height);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--header-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 900;
+}
+
+.header-left { 
+  display: flex; 
+  align-items: center; 
+  gap: 1.5rem; 
+}
+
+.menu-toggle-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-color);
+  color: white;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-heading { 
+  font-size: 1.1rem; 
+  font-weight: 600; 
+  margin: 0;
+  color: white;
+}
+
+.admin-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0,0,0,0.3);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  border: 1px solid var(--border-color);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--success);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--success);
+}
+
+/* --- 5. Scrollable Body & Loaders --- */
+.admin-scroll-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  background: radial-gradient(circle at top left, #1e293b, #0b0e14);
+}
+
+/* Loader Styling */
+.admin-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60%;
+  color: var(--text-dim);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255,255,255,0.1);
+  border-top: 3px solid var(--accent-color);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin { 
+  to { transform: rotate(360deg); } 
+}
+
+/* Smooth Fade in for content sections */
+.content-fade-in {
+  animation: contentAppear 0.5s ease-out forwards;
+}
+
+@keyframes contentAppear {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 6. Mobile Logic --- */
+@media (max-width: 1024px) {
+  .admin-main-viewport {
+    margin-left: 0 !important;
+  }
+  
+  .modern-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar-visible .modern-sidebar {
+    transform: translateX(0);
+    box-shadow: 15px 0 40px rgba(0,0,0,0.7);
+  }
+
+  .mobile-close-btn {
+    display: block;
+  }
+}

@@ -1,0 +1,237 @@
+/* src/games/BrainUp/Training.css */
+
+.training-page-container {
+    width: 100%;
+    height: 100vh; /* Lock to viewport height */
+    background-color: #0f1220;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent the whole page from scrolling */
+  }
+  
+  /* Layout container to handle fixed vs scrollable */
+  .training-main-layout {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 2rem;
+    overflow: hidden; 
+  }
+  
+  /* --- FIXED HEADER SECTION --- */
+  .training-fixed-header {
+    padding: 2.5rem 0 1.5rem 0;
+    flex-shrink: 0; /* Prevent header from squishing */
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .study-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(40, 194, 255, 0.1);
+    color: #28c2ff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.2rem;
+    border: 1px solid rgba(40, 194, 255, 0.2);
+  }
+  
+  .training-fixed-header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+    background: linear-gradient(to right, #fff, #8c96b5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .training-fixed-header p {
+    color: #8c96b5;
+    font-size: 1.2rem;
+    margin-top: 0.75rem;
+    max-width: 600px;
+  }
+  
+  /* --- SCROLLABLE CONTENT AREA --- */
+  .training-scrollable-content {
+    flex: 1;
+    overflow-y: auto; /* Enable vertical scroll only here */
+    padding: 1rem 0 4rem 0; /* Bottom padding so cards don't touch edge */
+    
+    /* Custom Scrollbar for a premium look */
+    scrollbar-width: thin;
+    scrollbar-color: #2c3047 #0f1220;
+  }
+  
+  .training-scrollable-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .training-scrollable-content::-webkit-scrollbar-track {
+    background: #0f1220;
+  }
+  
+  .training-scrollable-content::-webkit-scrollbar-thumb {
+    background: #2c3047;
+    border-radius: 10px;
+  }
+  
+  /* --- BENTO GRID --- */
+  .subjects-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .subject-bento-card {
+    position: relative;
+    background: #121426;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1.8rem;
+    padding: 2rem;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    min-height: 240px;
+  }
+  
+  .subject-bento-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--subject-theme);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* CARD HEADER */
+  .card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 2;
+  }
+  
+  .bento-icon-wrapper {
+    font-size: 2.8rem;
+    background: rgba(255, 255, 255, 0.03);
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .subject-bento-card:hover .bento-icon-wrapper {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1) rotate(-8deg);
+  }
+  
+  .card-action-icon {
+    color: #2c3047;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .subject-bento-card:hover .card-action-icon {
+    color: var(--subject-theme);
+    transform: translateX(5px);
+  }
+  
+  /* CARD BODY */
+  .card-body {
+    margin-top: 1.5rem;
+    z-index: 2;
+  }
+  
+  .bento-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: #fff;
+  }
+  
+  .bento-desc {
+    font-size: 0.95rem;
+    color: #8c96b5;
+    line-height: 1.5;
+    margin: 0;
+  }
+  
+  /* CARD FOOTER */
+  .card-footer-meta {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    z-index: 2;
+  }
+  
+  .module-pill {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--subject-theme);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .module-progress-track {
+    width: 100%;
+    height: 6px;
+    background: #1e2133;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .module-progress-fill {
+    width: 40%; 
+    height: 100%;
+    background: var(--subject-theme);
+    border-radius: 10px;
+    box-shadow: 0 0 12px var(--subject-theme);
+  }
+  
+  /* GLOW EFFECT */
+  .bento-glow-effect {
+    position: absolute;
+    bottom: -20%;
+    right: -20%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--subject-theme) 0%, transparent 70%);
+    opacity: 0;
+    filter: blur(50px);
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .subject-bento-card:hover .bento-glow-effect {
+    opacity: 0.15;
+  }
+  
+  /* --- ANIMATIONS --- */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* --- RESPONSIVENESS --- */
+  @media (max-width: 768px) {
+    .training-fixed-header h1 { font-size: 2.2rem; }
+    .training-main-layout { padding: 0 1rem; }
+    .subjects-bento-grid { grid-template-columns: 1fr; }
+  }

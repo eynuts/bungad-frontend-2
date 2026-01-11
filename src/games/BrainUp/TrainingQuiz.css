@@ -1,0 +1,234 @@
+/* src/games/BrainUp/Training.css */
+
+/* --- MAIN CONTAINER --- */
+.training-page-container {
+    width: 100%;
+    height: 100vh; /* Lock height to viewport */
+    background-color: #0f1220;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Important for fixed header */
+  }
+  
+  .training-main-layout {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 2rem;
+    overflow: hidden;
+  }
+  
+  /* --- FIXED HEADER & HERO --- */
+  .training-fixed-header, .training-hero {
+    padding: 2.5rem 0 1.5rem 0;
+    flex-shrink: 0;
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .study-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(40, 194, 255, 0.1);
+    color: #28c2ff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.2rem;
+    border: 1px solid rgba(40, 194, 255, 0.2);
+  }
+  
+  .training-fixed-header h1, .hero-text h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+    background: linear-gradient(to right, #fff, #8c96b5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .training-fixed-header p, .hero-text p {
+    color: #8c96b5;
+    font-size: 1.2rem;
+    margin-top: 0.75rem;
+    max-width: 600px;
+  }
+  
+  /* --- SCROLLABLE AREA --- */
+  .training-scrollable-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 0 5rem 0;
+    scrollbar-width: thin;
+    scrollbar-color: #2c3047 #0f1220;
+  }
+  
+  .training-scrollable-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .training-scrollable-content::-webkit-scrollbar-track {
+    background: #0f1220;
+  }
+  
+  .training-scrollable-content::-webkit-scrollbar-thumb {
+    background: #2c3047;
+    border-radius: 10px;
+  }
+  
+  /* --- BENTO GRID & CARDS --- */
+  .subjects-bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .subject-bento-card {
+    position: relative;
+    background: #121426;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1.8rem;
+    padding: 2rem;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    min-height: 240px;
+  }
+  
+  .subject-bento-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--subject-theme);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  }
+  
+  .bento-icon-wrapper {
+    font-size: 2.8rem;
+    background: rgba(255, 255, 255, 0.03);
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.2rem;
+  }
+  
+  .bento-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 1.5rem 0 0.5rem 0;
+  }
+  
+  .bento-desc {
+    font-size: 0.95rem;
+    color: #8c96b5;
+    line-height: 1.5;
+  }
+  
+  /* --- PROGRESS BAR --- */
+  .module-progress-track {
+    width: 100%;
+    height: 8px;
+    background: #1e2133;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 1rem;
+  }
+  
+  .module-progress-fill {
+    height: 100%;
+    background: var(--subject-theme, #28c2ff);
+    box-shadow: 0 0 15px var(--subject-theme, #28c2ff);
+    transition: width 0.4s ease;
+  }
+  
+  /* --- QUIZ OPTIONS GRID --- */
+  .options-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .option-btn-card {
+    background: #1e2133;
+    border: 2px solid transparent;
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+  }
+  
+  .option-indicator {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  /* Color Variants for Quiz Buttons */
+  .color-variant-0 { border-left: 6px solid #ff4b6e; }
+  .color-variant-1 { border-left: 6px solid #28c2ff; }
+  .color-variant-2 { border-left: 6px solid #ffb84b; }
+  .color-variant-3 { border-left: 6px solid #41d18c; }
+  
+  .option-btn-card:hover {
+    background: #2c3047;
+    transform: scale(1.02);
+  }
+  
+  /* --- SETTLEMENT CARD BUTTONS --- */
+  .export-csv-btn, .return-home-btn {
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+  }
+  
+  .export-csv-btn {
+    background: #28c2ff;
+    color: white;
+  }
+  
+  .return-home-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .export-csv-btn:hover { background: #1da0d8; }
+  .return-home-btn:hover { background: rgba(255, 255, 255, 0.1); }
+  
+  /* --- ANIMATIONS --- */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* --- RESPONSIVE --- */
+  @media (max-width: 768px) {
+    .options-layout-grid { grid-template-columns: 1fr; }
+    .training-fixed-header h1 { font-size: 2.2rem; }
+    .training-main-layout { padding: 0 1rem; }
+  }

@@ -1,0 +1,182 @@
+/* src/games/WordSprint/WordSprint.css */
+
+/* 1. VIEWPORT LOCK: Soft Navy/Slate Background */
+.word-sprint-wrapper {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Soft dark gradient that isn't harsh */
+    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #f8fafc;
+}
+
+.start-screen-container {
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2.5rem;
+    box-sizing: border-box;
+}
+
+/* 2. HEADER SECTION */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10%;
+}
+
+.game-title {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 800;
+    margin: 0;
+    color: #38bdf8; /* Soft blue highlight */
+    letter-spacing: -1px;
+}
+
+.status-badge {
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: #38bdf8;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.player-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 20px;
+    border-radius: 50px;
+}
+
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    background: #0ea5e9;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+}
+
+/* 3. MAIN SELECTION GRID */
+.menu-main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.welcome-text h2 { font-size: 2rem; color: #f1f5f9; }
+.welcome-text p { color: #94a3b8; font-size: 1.1rem; text-align: center; }
+
+.game-selector-grid {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    max-width: 900px;
+    justify-content: center;
+}
+
+/* 4. MODE CARDS (Using a soft "Glass" look) */
+.mode-card {
+    flex: 1;
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+    max-width: 350px;
+}
+
+.mode-card:hover {
+    background: rgba(51, 65, 85, 0.8);
+    transform: translateY(-8px);
+    border-color: #38bdf8;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.card-visual {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-details h3 {
+    color: #f8fafc;
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.card-details p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.card-arrow {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #38bdf8;
+}
+
+/* 5. FOOTER */
+.game-footer {
+    height: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.back-btn-modern {
+    background: transparent;
+    border: 1px solid #475569;
+    color: #94a3b8;
+    padding: 12px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-btn-modern:hover {
+    color: white;
+    border-color: white;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* 6. RESPONSIVE MEDIA QUERIES */
+@media (max-width: 768px) {
+    .game-selector-grid { flex-direction: column; align-items: center; }
+    .mode-card { flex-direction: row; width: 100%; padding: 1.5rem; }
+    .card-visual { font-size: 2.5rem; margin-bottom: 0; margin-right: 15px; }
+    .card-details p { text-align: left; }
+    .card-arrow { margin-left: auto; margin-top: 0; }
+}
+
+@media (max-height: 550px) {
+    .welcome-text { display: none; }
+    .mode-card { padding: 1rem; }
+}

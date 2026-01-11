@@ -1,0 +1,409 @@
+:root {
+  --neon-blue: #00f2ff;
+  --neon-purple: #bc13fe;
+  --dark-bg: rgba(10, 15, 30, 0.85);
+  --glass-border: rgba(0, 242, 255, 0.3);
+  --text-main: #e0e0e0;
+}
+
+.sma-container {
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: block;
+  place-items: unset;
+  background-color: #111; /* fallback for dark theme */
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* --- Header Section --- */
+.headerBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: -20px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px 25px;
+  border-radius: 0 0 12px 12px;
+  border-bottom: 2px solid var(--neon-blue);
+  backdrop-filter: blur(10px);
+}
+
+.arenaTitle {
+  margin: 0 !important;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 900;
+  text-shadow: 0 0 10px var(--neon-blue);
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.backButton {
+  background: transparent;
+  border: 1px solid var(--neon-blue);
+  color: var(--neon-blue);
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.backButton:hover {
+  background: var(--neon-blue);
+  color: black;
+  box-shadow: 0 0 15px var(--neon-blue);
+}
+
+/* --- Layout Structure --- */
+.gameLayout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 0px;
+  flex: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* --- Sidebar (Leaderboard/Scores) --- */
+.gameSidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarBlock {
+  background: var(--dark-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 15px;
+  padding: 20px;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  margin-left: 40px;
+  margin-right: -40px;
+}
+
+.blockTitle {
+  text-align: center;
+  color: var(--neon-blue);
+  text-transform: uppercase;
+  margin-top: 0;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+/* --- Score Cards (Live Match) --- */
+.scoreCard {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+.scoreCard.currentUser {
+  border-color: var(--neon-blue);
+  background: rgba(0, 242, 255, 0.1);
+}
+
+/* --- AVATAR SYSTEM (The fix for "Boxy" images) --- */
+.avatarWrapper, .avatarSmallWrapper, .avatarLarge {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid var(--neon-blue);
+  background: #111;
+}
+
+.avatarWrapper { width: 50px; height: 50px; margin-right: 15px; }
+.avatarSmallWrapper { width: 30px; height: 30px; margin-right: 10px; }
+.avatarLarge { width: 100px; height: 100px; margin-bottom: 10px; border-width: 3px; box-shadow: 0 0 15px var(--neon-blue); }
+
+.circularAvatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.defaultAvatarCircle {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--neon-purple);
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+
+.defaultAvatarCircle.small { font-size: 0.9rem; }
+.defaultAvatarCircle.large { font-size: 2.5rem; }
+
+/* --- Main Game Area --- */
+.gameMain {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.mainCard {
+  background: var(--dark-bg);
+  border: 2px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 100px;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Sub-Components: Ranks & Badges --- */
+.rankProgressBadge {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.rankBadge {
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  border: 1px solid white;
+}
+
+.bronzeiii, .bronzeii, .bronzei { background: #cd7f32; }
+.silveriii, .silverii, .silveri { background: #c0c0c0; color: black; }
+.goldiii, .goldii, .goldi { background: #ffd700; color: black; }
+
+.rankProgressContainer { width: 150px; }
+.rankProgressMeta { display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 4px; }
+.rankProgressBar { height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; overflow: hidden; }
+.progressBarFill { height: 100%; background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue)); box-shadow: 0 0 8px var(--neon-blue); }
+
+/* --- Global Leaderboard List --- */
+.leaderboardGlobal {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 100%;
+  padding-right: 6px; /* space for scrollbar */
+}
+
+.leaderboardHeader {
+  display: grid;
+  grid-template-columns: 30px 1fr 80px 60px;
+  font-weight: bold;
+  padding: 10px 5px;
+  color: var(--neon-blue);
+  font-size: 0.8rem;
+}
+.leaderboardItem {
+  display: grid;
+  grid-template-columns: 30px 1fr 80px 60px;
+  align-items: center;
+  padding: 12px 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+}
+/* ===== Leaderboard Scrollbar Styling ===== */
+
+/* Firefox */
+.leaderboardGlobal {
+  scrollbar-width: thin;
+  scrollbar-color: var(--neon-blue) transparent;
+}
+
+/* Chrome / Edge / Safari */
+.leaderboardGlobal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.leaderboardGlobal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.leaderboardGlobal::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--neon-purple),
+    var(--neon-blue)
+  );
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 242, 255, 0.8);
+}
+
+.leaderboardGlobal::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--neon-blue),
+    var(--neon-purple)
+  );
+}
+.leaderboardGlobal::-webkit-scrollbar-thumb {
+  opacity: 0.3;
+}
+
+.leaderboardGlobal:hover::-webkit-scrollbar-thumb {
+  opacity: 1;
+}
+
+.currentUserL { background: rgba(0, 242, 255, 0.1); border-radius: 8px; }
+.playerInfoL { display: flex; align-items: center; gap: 10px; }
+
+/* --- Match Components --- */
+.playerVS { display: flex; justify-content: space-around; align-items: center; margin: 30px 0; }
+.playerMatchProfile { display: flex; flex-direction: column; align-items: center; }
+
+.questionBox {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 30px;
+  border-radius: 15px;
+  margin: 20px 0;
+  border: 1px dashed var(--neon-blue);
+}
+
+.questionText {
+  font-size: 3rem;
+  margin: 0;
+  color: white;
+  text-shadow: 0 0 15px var(--neon-blue);
+}
+
+/* --- Final Results --- */
+.rankItem {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    margin-bottom: 10px;
+    border-radius: 12px;
+}
+
+.rankNumber { font-weight: bold; width: 40px; color: var(--neon-blue); }
+.rankNumber.winner { color: gold; text-shadow: 0 0 10px gold; }
+
+/* --- Buttons & Inputs --- */
+.actionButton {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+
+.primary { background: var(--neon-blue); color: black; box-shadow: 0 0 20px rgba(0, 242, 255, 0.4); }
+.secondary { background: transparent; border: 1px solid #ff4d4d; color: #ff4d4d; }
+
+.answerForm { display: flex; gap: 10px; }
+.answerForm input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
+  padding: 15px;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.2rem;
+  outline: none;
+}
+.answerForm input:focus { border-color: var(--neon-blue); box-shadow: 0 0 10px var(--neon-blue); }
+
+/* --- Timer --- */
+.gameTimer {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  position: relative;
+  margin: 15px 0;
+}
+.timerBar { height: 100%; transition: width 1s linear; border-radius: 5px; }
+.timerBar.green { background: #00ff88; box-shadow: 0 0 10px #00ff88; }
+.timerBar.orange { background: #ffaa00; box-shadow: 0 0 10px #ffaa00; }
+.timerBar.red { background: #ff4d4d; box-shadow: 0 0 10px #ff4d4d; }
+.timerText { position: absolute; right: 0; top: -20px; font-size: 0.8rem; font-weight: bold; }
+
+/* Final leaderboard: avatar + name inline */
+.playerInfo.horizontal {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.playerNameInline {
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.refreshButton {
+  margin: 15px auto 0 auto; /* Center it in the leaderboard box */
+  display: block;
+  padding: 10px 25px;
+  background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 0 15px var(--neon-blue), 0 0 25px var(--neon-purple);
+  transition: all 0.3s ease;
+}
+
+.refreshButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px var(--neon-blue), 0 0 35px var(--neon-purple);
+}
+
+.refreshButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+@media (max-width: 1000px) {
+  .gameLayout { grid-template-columns: 1fr; }
+  .gameSidebar { order: 2; }
+  .sidebarBlock { height: auto; max-height: 400px; }
+
+}
